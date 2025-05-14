@@ -1,0 +1,48 @@
+# Archivos de configuración específicos de usuario
+*.user
+*.suo
+*.vscode
+
+# Archivos de compilación
+bin/
+obj/
+*.dll
+*.exe
+
+# Archivos de depuración y registros
+*.pdb
+*.log
+*.bak
+
+# Archivos de NuGet
+*.nupkg
+packages/
+.nuget/
+
+# Archivos de configuración de VS
+.vs/
+*.pidb
+*.psess
+
+# Archivos generados por Entity Framework
+Migrations/
+
+# Archivos específicos de SQL Server
+*.mdf
+*.ldf
+*.dbproj
+*.sqlsettings
+*.sqlproj
+
+# Archivos de configuración y secretos
+appsettings.json
+appsettings.Development.json
+secrets.json
+
+# Archivos generados por Docker
+docker-compose.override.yml
+.dockerignore
+
+# Archivos de configuración de Git
+!.gitignore
+!.gitattributes
