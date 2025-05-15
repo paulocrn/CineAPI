@@ -1,5 +1,6 @@
 using Domain.Entities;
 using Infrastructure.Data.Configurations;
+using Infrastructure.Seed;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data.Context
@@ -20,6 +21,15 @@ namespace Infrastructure.Data.Context
         protected override void OnModelCreating(ModelBuilder constructorModelo)
         {
             base.OnModelCreating(constructorModelo);
+
+            // Eliminación de datos de las tablas
+            constructorModelo.Entity<Cartelera>().HasData(Array.Empty<Cartelera>());
+            constructorModelo.Entity<Sala>().HasData(Array.Empty<Sala>());
+            constructorModelo.Entity<Asiento>().HasData(Array.Empty<Asiento>());
+            constructorModelo.Entity<Pelicula>().HasData(Array.Empty<Pelicula>());
+            constructorModelo.Entity<Cliente>().HasData(Array.Empty<Cliente>());
+            constructorModelo.Entity<Reserva>().HasData(Array.Empty<Reserva>());
+
 
             // Aplicar configuraciones
             constructorModelo.ApplyConfiguration(new CarteleraConfiguration());

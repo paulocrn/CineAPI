@@ -10,21 +10,24 @@ namespace Infrastructure.Data.Configurations
         {
             builder.ToTable("Asientos");
             builder.HasKey(a => a.Id);
+            builder.Property(a => a.Id)
+                    .ValueGeneratedOnAdd();
             
             builder.Property(a => a.Numero)
                 .IsRequired();
                 
             builder.Property(a => a.Fila)
                 .IsRequired();
-                
+
+            builder.Property(a => a.SalaId)
+                .IsRequired();
+
             builder.Property(a => a.Status)
-                .IsRequired()
-                .HasDefaultValue(true);
-                
+                .IsRequired();
+
             builder.HasOne(a => a.Sala)
                 .WithMany(s => s.Asientos)
-                .HasForeignKey(a => a.SalaId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .HasForeignKey(a => a.SalaId);
                 
             builder.HasMany(a => a.Reservas)
                 .WithOne(r => r.Asiento)

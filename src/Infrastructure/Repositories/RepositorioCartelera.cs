@@ -14,7 +14,42 @@ namespace Infrastructure.Repositories
         {
             _context = context;
         }
-        
+
+        public async new Task<Cartelera> ObtenerPorIdAsync(int id)
+        {
+            var cartelera = await _context.Carteleras
+                .Include(c => c.Pelicula)
+                .Include(c => c.Sala)
+                    .ThenInclude(s => s.Asientos)
+                .Include(c => c.Reservas)
+                    .ThenInclude(r => r.Cliente)
+                .FirstOrDefaultAsync(c => c.Id == id);
+
+            if (cartelera == null)
+            {
+                throw new Exception($"Cartelera no encontrada");
+            }
+
+            return cartelera;
+        }
+
+        public new async Task<IEnumerable<Cartelera>> ObtenerTodosAsync()
+        {
+            var cartelera = await _context.Carteleras
+                .Include(c => c.Pelicula)
+                .Include(c => c.Sala)
+                .OrderBy(c => c.Fecha)
+                .ThenBy(c => c.HoraInicio)
+                .ToListAsync();
+
+            if (cartelera == null)
+            {
+                throw new Exception($"Cartelera no encontrada");
+            }
+
+            return cartelera;
+        }
+
         public async Task<IEnumerable<Reserva>> ObtenerReservasPorGeneroYRangoFechas(GeneroPelicula genero, DateTime fechaInicio, DateTime fechaFin)
         {
             return await _context.Reservas
