@@ -26,7 +26,7 @@ Proyecto backend desarrollado en **.NET 9**, con arquitectura en capas (API, App
 ## 📦 Clonar el proyecto
 
 ```bash
-git clone https://github.com/usuario/CineAPI.git
+git clone https://github.com/paulocrn/CineAPI.git
 cd CineAPI
 ```
 
